@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Gym Exercise</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="enter_email">Enter Your Email</string>
+    <string name="enter_password">Enter Your Password</string>
+    <string name="chest_exercise">Chest Exercise</string>
+    <string name="tricep_exercise">Tricep Exercise</string>
+    <string name="bicep_exercise">Biceps Exercise</string>
+    <string name="leg_exercise">Leg Exercise</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="add_description">Add Description</string>
+    <string name="save">Save</string>
+    <string name="enter_your_day">Enter your Day</string>
+    <string name="enter_day">Day</string>
+    <string name="adavnced">Advanced</string>
+    <string name="intermidiate">Intermidiate</string>
+    <string name="bignnner">Beginners</string>
+    <string name="choose_level">Choose Your Level</string>
+    <string name="select_image">Select Image</string>
+</resources>

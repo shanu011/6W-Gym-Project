@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_exercise"
+        android:layout_marginHorizontal="@dimen/_10sp"
+        android:layout_marginVertical="@dimen/_10sp"
+        android:gravity="center"
+        android:textSize="@dimen/_30sp"/>
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sp"
+        android:layout_marginVertical="@dimen/_20sp"
+        android:hint="@string/exercise_name" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_description"
+        android:layout_marginHorizontal="@dimen/_10sp"
+        android:layout_marginVertical="@dimen/_10sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sp"
+        android:text="@string/save"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        android:padding="@dimen/_15sp"
+        />
+
+
+
+</LinearLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvChest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_20sp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvChest"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/_20sp"
+            android:textAlignment="center"
+            android:textSize="@dimen/_30sp"
+            android:text="@string/chest_exercise"/>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvTricep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_20sp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvTricep"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/_20sp"
+            android:textAlignment="center"
+            android:textSize="@dimen/_30sp"
+            android:text="@string/tricep_exercise"/>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvBicep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/gray"
+        android:layout_margin="@dimen/_10sp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_20sp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvBicep"
+            android:layout_margin="@dimen/_20sp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_30sp"
+            android:text="@string/bicep_exercise"/>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvLeg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_20sp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvLeg"
+            android:layout_margin="@dimen/_20sp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_30sp"
+            android:text="@string/leg_exercise"/>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

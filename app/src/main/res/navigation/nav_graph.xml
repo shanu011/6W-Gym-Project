@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/levelFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.adminapp.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/favourateExerciseFragment"
+        android:name="com.example.adminapp.FavourateExerciseFragment"
+        android:label="fragment_favourate_exercise"
+        tools:layout="@layout/fragment_favourate_exercise" />
+    <fragment
+        android:id="@+id/allExerciseFragment"
+        android:name="com.example.adminapp.AllExerciseFragment"
+        android:label="fragment_all_exercise"
+        tools:layout="@layout/fragment_all_exercise" />
+    <fragment
+        android:id="@+id/addUpdateExerciseFragment"
+        android:name="com.example.adminapp.AddUpdateExerciseFragment"
+        android:label="AddUpdateExerciseFragment"
+        tools:layout="@layout/fragment_add_update_exercise"/>
+    <fragment
+        android:id="@+id/exerciseListFragment"
+        android:name="com.example.adminapp.ExerciseListFragment"
+        android:label="fragment_exercise_list"
+        tools:layout="@layout/fragment_exercise_list" />
+    <fragment
+        android:id="@+id/subExerciseFragment"
+        android:name="com.example.adminapp.SubExerciseFragment"
+        android:label="fragment_sub_exercise"
+        tools:layout="@layout/fragment_sub_exercise" />
+    <fragment
+        android:id="@+id/dayWiseExerciseFragment"
+        android:name="com.example.adminapp.DayWiseExerciseFragment"
+        android:label="DayWiseExerciseFragment" />
+    <fragment
+        android:id="@+id/levelFragment"
+        android:name="com.example.adminapp.LevelFragment"
+        android:label="LevelFragment" />
+</navigation>
