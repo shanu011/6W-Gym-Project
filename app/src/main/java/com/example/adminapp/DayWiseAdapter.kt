@@ -24,6 +24,13 @@ class DayWiseAdapter(var dayList : ArrayList<DayModel>,var dayClickInterface: Da
         holder.itemView.setOnClickListener {
             dayClickInterface.onDayClick(dayList[position])
         }
+        holder.binding.ivEdit.setOnClickListener {
+            dayClickInterface.onEdit(dayList[position])
+        }
+        holder.itemView.setOnLongClickListener {
+            dayClickInterface.onDelete(dayList[position])
+            return@setOnLongClickListener true
+        }
     }
 
 }

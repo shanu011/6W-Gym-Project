@@ -10,13 +10,14 @@
     app:cardMaxElevation="20sp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
@@ -24,11 +25,20 @@
 
     <TextView
         android:id="@+id/tvDay"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Day 1"
+        android:layout_below="@id/ivImage"
         android:textColor="@color/black"
         android:textSize="25sp"/>
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_border_color_24"
+            android:layout_below="@id/ivImage"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

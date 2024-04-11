@@ -24,10 +24,10 @@
         android:gravity="center"
         android:textSize="@dimen/_30sp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ImageView
         android:id="@+id/ivExerciseImageList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:src="@mipmap/ic_launcher"/>
     <TextView

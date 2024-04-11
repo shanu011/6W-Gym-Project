@@ -53,6 +53,8 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
                             dayModel = snapshot.document.toObject(DayModel::class.java)
                             dayModel.id = snapshot.document.id
                             dayList.add(dayModel)
+                            dayList.sortBy { it.day }
+                            println("SortList: $dayList")
                             dayAdapter.notifyDataSetChanged()
 
                         }
@@ -61,11 +63,13 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
                             dayModel.id = snapshot.document.id
                             var index =  dayList.indexOfFirst { element-> element.id == snapshot.document.id }
                             dayList.set(index,dayModel)
+                            dayList.sortBy { it.day }
                             dayAdapter.notifyDataSetChanged()
                         }
                         DocumentChange.Type.REMOVED->{
                             dayModel = snapshot.document.toObject(DayModel::class.java)
                             dayList.remove(dayModel)
+                            dayList.sortBy { it.day }
                             dayAdapter.notifyDataSetChanged()
                         }
                     }
@@ -133,5 +137,40 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
         bundle.putInt("difficultyLevel",difficultyLevel)
         System.out.println("DayModelId: ${dayModel.id}")
         mainActivity.navController.navigate(R.id.exerciseListFragment, bundle)
+    }
+
+    override fun onEdit(dayModel: DayModel) {
+        var dialog = Dialog(mainActivity)
+        var dialogBinding = DayDialogBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBinding.root)
+        dialog.show()
+        dialogBinding.btnSave.setText("Update")
+        dialogBinding.etDay.setText(dayModel.day)
+        dialog.window?.setLayout(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
+        dialogBinding.btnSave.setOnClickListener {
+            if(dialogBinding.etDay.text.toString().isEmpty()){
+                dialogBinding.etDay.error = "Enter your Day"
+            }else{
+                dayModel.day = dialogBinding.etDay.text.toString()
+                dayModel.difficultyLevel = difficultyLevel
+
+                db.collection("day").document(dayModel.id.toString()).set(dayModel).addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Toast.makeText(mainActivity,"Update", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    override fun onDelete(dayModel: DayModel) {
+        db.collection("day").document(dayModel.id.toString()).delete().addOnCompleteListener {
+          if(it.isSuccessful){
+              Toast.makeText(requireContext(),"Delete",Toast.LENGTH_SHORT).show()
+          }
+            }
     }
 }

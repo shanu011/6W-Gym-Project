@@ -18,6 +18,6 @@ import com.example.adminapp.databinding.ActivityMainBinding
 
      override fun onResume() {
          super.onResume()
-         binding.toolBar.title = "Gym Exercise"
+         binding.toolBar.title = "Yoga"
      }
 }

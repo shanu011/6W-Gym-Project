@@ -7,5 +7,7 @@ interface ClickInterface {
 }
 interface DayClickInterface {
     fun onDayClick(dayModel : DayModel)
+     fun onEdit(dayModel: DayModel)
+    fun onDelete(dayModel: DayModel)
 
 }

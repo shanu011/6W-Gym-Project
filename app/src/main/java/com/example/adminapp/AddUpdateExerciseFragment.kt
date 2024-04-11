@@ -20,6 +20,7 @@ import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -71,15 +72,12 @@ class AddUpdateExerciseFragment : Fragment() {
     }
     val imagePermissionLauncher =
         registerForActivityResult(
-            ActivityResultContracts.GetMultipleContents()
+            ActivityResultContracts.GetContent()
         ) {uris->
             uris?.let {
-                imageList.addAll(it)
-                println("ImageList : $imageList")
-                imageAdapter.notifyDataSetChanged()
-//                binding.ivExerciseImage.setImageURI(it)
-//                imageUri = it
-//                Glide.with(this).load(it).into(binding.ivimage)
+              //  binding.ivExerciseImageList.setImageURI(it)
+                imageUri = it
+                Glide.with(this).load(it).into(binding.ivExerciseImageList)
             }
         }
 
@@ -107,9 +105,9 @@ class AddUpdateExerciseFragment : Fragment() {
         arrayAdapter = ArrayAdapter(mainActivity,android.R.layout.simple_list_item_1,weightGainArray)
         binding.weightGainSpinner.adapter = arrayAdapter
 
-        imageAdapter = ImageAdapter(imageList)
-        binding.ivExerciseImageList.layoutManager = LinearLayoutManager(mainActivity,LinearLayoutManager.HORIZONTAL,false)
-        binding.ivExerciseImageList.adapter = imageAdapter
+     //   imageAdapter = ImageAdapter(imageList)
+//        binding.ivExerciseImageList.layoutManager = LinearLayoutManager(mainActivity,LinearLayoutManager.HORIZONTAL,false)
+//        binding.ivExerciseImageList.adapter = imageAdapter
 
         binding.spinner.onItemSelectedListener = object :OnItemSelectedListener {
             override fun onItemSelected(
@@ -154,10 +152,10 @@ class AddUpdateExerciseFragment : Fragment() {
                 binding.etExerciseName.setText(exerciseModel.exerciseName)
                 binding.etExerciseDescription.setText(exerciseModel.exerciseDescription)
                 exerciseId = exerciseModel.id.toString()
-//                Glide.with(mainActivity)
-//                    .load(exerciseModel.image).placeholder(R.mipmap.ic_launcher)
-//                    .error(R.mipmap.ic_launcher)
-//                    .into(binding.ivExerciseImage)
+                Glide.with(mainActivity)
+                    .load(exerciseModel.image).placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(binding.ivExerciseImageList)
                 isUpdate = true
             }
         }
@@ -196,13 +194,11 @@ class AddUpdateExerciseFragment : Fragment() {
 
 
                 if(this::imageUri.isInitialized) {
-                    if (imageList.isNotEmpty()) {
-                        for (uri in imageList) {
                             println("ImageList")
                             var ImagesPath =
                                 storageRef.child("/images")
                                     .child(System.currentTimeMillis().toString())
-                            ImagesPath.putFile(uri)
+                            ImagesPath.putFile(imageUri)
                                 .continueWithTask(object :
                                     Continuation<UploadTask.TaskSnapshot?, Task<Uri?>> {
                                     @Throws(Exception::class)
@@ -218,7 +214,7 @@ class AddUpdateExerciseFragment : Fragment() {
                                         if (task.isSuccessful()) {
                                             val downUri: Uri? = task.getResult()
                                             Log.e(ContentValues.TAG, "download uri $downUri")
-                                            exerciseModel.imageList?.add(downUri.toString())
+                                            exerciseModel.image = downUri.toString()
                                             if (isUpdate) {
                                                 println("IsUpdate: $isUpdate")
                                                 db.collection("exercise").document(exerciseId)
@@ -260,13 +256,13 @@ class AddUpdateExerciseFragment : Fragment() {
                                     }
                                 })
                         }
-                    }
+
                 else{
                         Toast.makeText(mainActivity,"Select Image",Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-        }
+
         return binding.root
     }
 
