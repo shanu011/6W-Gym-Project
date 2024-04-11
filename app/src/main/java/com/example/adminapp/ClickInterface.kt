@@ -7,12 +7,9 @@ interface ClickInterface {
 }
 interface DayClickInterface {
     fun onDayClick(dayModel : DayModel)
-<<<<<<< Updated upstream
-     fun onEdit(dayModel: DayModel)
-=======
+
     fun onEdit(dayModel: DayModel)
 
->>>>>>> Stashed changes
     fun onDelete(dayModel: DayModel)
 
 }

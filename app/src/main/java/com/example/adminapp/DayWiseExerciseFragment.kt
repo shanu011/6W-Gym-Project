@@ -27,15 +27,15 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class DayWiseExerciseFragment : Fragment(), DayClickInterface {
-    lateinit var binding : FragmentDayWiseExerciseBinding
-    lateinit var dayAdapter : DayWiseAdapter
+    lateinit var binding: FragmentDayWiseExerciseBinding
+    lateinit var dayAdapter: DayWiseAdapter
     var db = Firebase.firestore
     var dayModel = DayModel()
     lateinit var mainActivity: MainActivity
     var dayList = ArrayList<DayModel>()
     var sortDayWise = arrayListOf<DayModel>()
-        private var difficultyLevel: Int = 1
-        private var exerciseType: Int = 1
+    private var difficultyLevel: Int = 1
+    private var exerciseType: Int = 1
     var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,27 +45,22 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
             difficultyLevel = arguments?.getInt("difficultyLevel", 1) ?: 1
             println("Check the Level: $difficultyLevel")
         }
-       // dayList.clear()
+        // dayList.clear()
 
-        db.collection("day").whereEqualTo("difficultyLevel",difficultyLevel)
+        db.collection("day").whereEqualTo("difficultyLevel", difficultyLevel)
             .addSnapshotListener { value, error ->
-                if(error!= null){
+                if (error != null) {
                     return@addSnapshotListener
                 }
+                dayList.clear()
                 for(snapshot in value!!.documentChanges){
                     when(snapshot.type){
                         DocumentChange.Type.ADDED->{
                             dayModel = snapshot.document.toObject(DayModel::class.java)
                             dayModel.id = snapshot.document.id
                             dayList.add(dayModel)
-<<<<<<< Updated upstream
                             dayList.sortBy { it.day }
                             println("SortList: $dayList")
-=======
-                            dayList.sortedBy { it.id == snapshot.document.id }
-                            println("DayWise: $sortDayWise")
-
->>>>>>> Stashed changes
                             dayAdapter.notifyDataSetChanged()
 
                         }
@@ -74,21 +69,13 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
                             dayModel.id = snapshot.document.id
                             var index =  dayList.indexOfFirst { element-> element.id == snapshot.document.id }
                             dayList.set(index,dayModel)
-<<<<<<< Updated upstream
                             dayList.sortBy { it.day }
-=======
-                            dayList.sortedBy { it.id }
->>>>>>> Stashed changes
                             dayAdapter.notifyDataSetChanged()
                         }
                         DocumentChange.Type.REMOVED->{
                             dayModel = snapshot.document.toObject(DayModel::class.java)
                             dayList.remove(dayModel)
-<<<<<<< Updated upstream
                             dayList.sortBy { it.day }
-=======
-                        dayList.sortedBy { it.id }
->>>>>>> Stashed changes
                             dayAdapter.notifyDataSetChanged()
                         }
                     }
@@ -103,7 +90,7 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDayWiseExerciseBinding.inflate(layoutInflater)
-        dayAdapter = DayWiseAdapter(dayList,this)
+        dayAdapter = DayWiseAdapter(dayList, this)
         binding.rvList.layoutManager = LinearLayoutManager(mainActivity)
         binding.rvList.adapter = dayAdapter
         binding.fabBtn.setOnClickListener {
@@ -111,24 +98,24 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
             var dialogBinding = DayDialogBinding.inflate(layoutInflater)
             dialog.setContentView(dialogBinding.root)
             dialog.show()
-            dialog.window?.setLayout(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
+            dialog.window?.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             dialogBinding.btnSave.setOnClickListener {
-                if(dialogBinding.etDay.text.toString().isEmpty()){
+                if (dialogBinding.etDay.text.toString().isEmpty()) {
                     dialogBinding.etDay.error = "Enter your Day"
-                }else{
+                } else {
                     var dayModel = DayModel()
                     dayModel.day = dialogBinding.etDay.text.toString()
                     dayModel.difficultyLevel = difficultyLevel
                     db.collection("day").add(dayModel).addOnCompleteListener {
-                        if(it.isSuccessful){
-                            Toast.makeText(mainActivity,"saved", Toast.LENGTH_SHORT).show()
+                        if (it.isSuccessful) {
+                            Toast.makeText(mainActivity, "saved", Toast.LENGTH_SHORT).show()
                             dialog.dismiss()
                         }
                     }
                 }
             }
         }
-        return  binding.root
+        return binding.root
     }
 
     companion object {
@@ -142,93 +129,62 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(exerciseType:Int, type: Int) =
+        fun newInstance(exerciseType: Int, type: Int) =
             DayWiseExerciseFragment().apply {
                 arguments = Bundle().apply {
-                    putInt("type",exerciseType)
-                    putInt("exerciseType",type)
+                    putInt("type", exerciseType)
+                    putInt("exerciseType", type)
                 }
             }
     }
+
     override fun onDayClick(dayModel: DayModel) {
         var bundle = Bundle()
-        bundle.putString("dayModel",dayModel.id)
-        bundle.putInt("difficultyLevel",difficultyLevel)
+        bundle.putString("dayModel", dayModel.id)
+        bundle.putInt("difficultyLevel", difficultyLevel)
         System.out.println("DayModelId: ${dayModel.id}")
         mainActivity.navController.navigate(R.id.exerciseListFragment, bundle)
     }
 
-    override fun onEdit(dayModel: DayModel) {
-<<<<<<< Updated upstream
-        var dialog = Dialog(mainActivity)
-        var dialogBinding = DayDialogBinding.inflate(layoutInflater)
-        dialog.setContentView(dialogBinding.root)
-        dialog.show()
-        dialogBinding.btnSave.setText("Update")
-        dialogBinding.etDay.setText(dayModel.day)
-        dialog.window?.setLayout(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
-        dialogBinding.btnSave.setOnClickListener {
-            if(dialogBinding.etDay.text.toString().isEmpty()){
+         override fun onEdit(dayModel: DayModel) {
+             var dialog = Dialog(mainActivity)
+             var dialogBinding = DayDialogBinding.inflate(layoutInflater)
+             dialog.setContentView(dialogBinding.root)
+             dialog.show()
+             dialogBinding.btnSave.setText("Update")
+             dialogBinding.etDay.setText(dayModel.day)
+             dialog.window?.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+             dialogBinding.btnSave.setOnClickListener {
+               if (dialogBinding.etDay.text.toString().isEmpty()) {
                 dialogBinding.etDay.error = "Enter your Day"
-            }else{
-                dayModel.day = dialogBinding.etDay.text.toString()
-                dayModel.difficultyLevel = difficultyLevel
+                } else {
+                   dayModel.day = dialogBinding.etDay.text.toString()
+                   dayModel.difficultyLevel = difficultyLevel
 
-                db.collection("day").document(dayModel.id.toString()).set(dayModel).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        Toast.makeText(mainActivity,"Update", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
+                    db.collection("day").document(dayModel.id.toString()).set(dayModel)
+                          .addOnCompleteListener {
+                           if (it.isSuccessful) {
+                               Toast.makeText(mainActivity, "Update", Toast.LENGTH_SHORT).show()
+                               dialog.dismiss()
+                        }
                     }
-                }
             }
 
-        }
-=======
-        var dialog = Dialog(requireActivity())
-        println("OnEdit Click")
-        var dialogBnding = DayDialogBinding.inflate(layoutInflater)
-        dialog.setContentView(dialogBnding.root)
-        dialog.window?.setLayout(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
-        dialogBnding.btnSave.setText("Update Day")
-        dialogBnding.etDay.setText(dayModel.day)
-        dialogBnding.btnSave.setOnClickListener{
-            if(dialogBnding.etDay.text.toString().isEmpty()){
-                dialogBnding.etDay.error = "Enter Day"
-            }else{
-                var day = DayModel()
-                day.day = dialogBnding.etDay.text.toString()
-                day.difficultyLevel = difficultyLevel
-                db.collection("day").document(dayModel.id.toString()).set(day).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        Toast.makeText(requireContext(),"Update",Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
-                    }else{
-                        Toast.makeText(requireContext(),"Not Update",Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-            }
         }
         dialog.show()
->>>>>>> Stashed changes
+
 
     }
 
     override fun onDelete(dayModel: DayModel) {
         db.collection("day").document(dayModel.id.toString()).delete().addOnCompleteListener {
-<<<<<<< Updated upstream
-          if(it.isSuccessful){
-              Toast.makeText(requireContext(),"Delete",Toast.LENGTH_SHORT).show()
-          }
-            }
-=======
+
             if (it.isSuccessful) {
-                Toast.makeText(requireActivity(), "Delete", Toast.LENGTH_SHORT).show()
-            }else{
+                Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show()
+            } else {
                 Toast.makeText(requireActivity(), "Not Delete", Toast.LENGTH_SHORT).show()
             }
         }
-
->>>>>>> Stashed changes
     }
 }
+
