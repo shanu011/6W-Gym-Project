@@ -50,7 +50,7 @@ class AddUpdateExerciseFragment : Fragment() {
     lateinit var imageUri: Uri
     lateinit var imageAdapter: ImageAdapter
     lateinit var arrayAdapter: ArrayAdapter<String>
-    var array = arrayOf("Full Body", "Arms", "Legs", "Chest")
+    var array = arrayOf("Select Exercise","Full Body", "Arms", "Legs", "Chest")
     var weightGainArray = arrayOf("Select Ctageory", "Weight Gain", "Weight Loss")
     // TODO: Rename and change types of parameters
     var imageList = arrayListOf<Uri>()
@@ -116,8 +116,14 @@ class AddUpdateExerciseFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                exerciseName = array[position]
-                exerciseType = position
+             //   exerciseName = array[position]
+                if(position!= 0){
+                    exerciseType = position
+                }else{
+                    Toast.makeText(mainActivity,"Select Exercise",Toast.LENGTH_SHORT).show()
+                }
+
+                println("Exercise Type: $exerciseType, $exerciseName")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -135,6 +141,7 @@ class AddUpdateExerciseFragment : Fragment() {
                        // exerciseName = weightGainArray[position]
                         if(position!=0){
                             weightGORL = position
+                            println("weightGORL $weightGORL")
                         }else{
                             Toast.makeText(mainActivity,"Select Category",Toast.LENGTH_SHORT).show()
                         }
@@ -188,7 +195,6 @@ class AddUpdateExerciseFragment : Fragment() {
                 exerciseModel.exerciseDescription = binding.etExerciseDescription.text.toString()
                 exerciseModel.difficultLevel = difficultyLevel
                 exerciseModel.exerciseType = exerciseType
-                exerciseModel.exerciseTypeName = exerciseName
                 exerciseModel.dayId = dayId
                 exerciseModel.WeigthGainOrLoss = weightGORL
 

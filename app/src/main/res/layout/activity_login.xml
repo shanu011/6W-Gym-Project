@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/login_background"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -40,7 +39,6 @@
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/_13sp"
-                android:textColorHint="@color/white"
                 android:textSize="20dp" />
 
             <EditText
@@ -55,7 +53,6 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:padding="@dimen/_13sp"
-                android:textColorHint="@color/white"
                 android:textSize="20dp" />
 
 
@@ -64,10 +61,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_15dp"
-                android:backgroundTint="@color/white"
                 android:padding="@dimen/_10sp"
+
                 android:text="Login"
-                android:textColor="#185DC3"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
