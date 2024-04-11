@@ -30,14 +30,13 @@ class DayWiseAdapter(var dayList : List<DayModel>,var dayClickInterface: DayClic
         holder.itemView.setOnLongClickListener {
             dayClickInterface.onDelete(dayList[position])
             return@setOnLongClickListener true
-<<<<<<< Updated upstream
-        }
-=======
 
         }
 
 
->>>>>>> Stashed changes
+        }
+
+
+
     }
 
-}

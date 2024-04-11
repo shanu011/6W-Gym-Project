@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivImage"
         tools:text="Day 1"
-        android:layout_below="@id/ivImage"
         android:textColor="@color/black"
         android:textSize="25sp"/>
 
@@ -37,17 +36,13 @@
             android:id="@+id/ivEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< Updated upstream
             android:src="@drawable/baseline_border_color_24"
             android:layout_below="@id/ivImage"
             android:layout_alignParentEnd="true"/>
-=======
-            android:src="@drawable/edit_ic"
-            android:layout_below="@id/ivImage"
-            android:layout_alignParentEnd="true"/>
 
 
->>>>>>> Stashed changes
+
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -26,9 +26,9 @@ import com.google.firebase.auth.auth
 
      override fun onResume() {
          super.onResume()
-<<<<<<< Updated upstream
+
          binding.toolBar.title = "Yoga"
-=======
+
          binding.toolBar.title = "YOGA"
      }
 
@@ -56,6 +56,6 @@ import com.google.firebase.auth.auth
              }
          }
          return super.onOptionsItemSelected(item)
->>>>>>> Stashed changes
+
      }
 }
