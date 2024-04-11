@@ -47,10 +47,10 @@ class AddUpdateExerciseFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     var storageRef = FirebaseStorage.getInstance().reference
     var db = Firebase.firestore
-    lateinit var imageUri: Uri
+     var imageUri: Uri?=null
     lateinit var imageAdapter : ImageAdapter
     lateinit var arrayAdapter: ArrayAdapter<String>
-    var array = arrayOf("Chest","Biceps","Triceps","Legs")
+    var array = arrayOf("Full Body","Arms","Legs","Chest")
     var weightGainArray = arrayOf("Select Ctageory", "Weight Gain","Weight Loss")
     // TODO: Rename and change types of parameters
     var imageList = arrayListOf<Uri>()
@@ -70,6 +70,7 @@ class AddUpdateExerciseFragment : Fragment() {
             println("Permission Not Granted")
         }
     }
+<<<<<<< Updated upstream
     val imagePermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.GetContent()
@@ -78,6 +79,13 @@ class AddUpdateExerciseFragment : Fragment() {
               //  binding.ivExerciseImageList.setImageURI(it)
                 imageUri = it
                 Glide.with(this).load(it).into(binding.ivExerciseImageList)
+=======
+    val imagePermissionLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {uri->
+            uri?.let {
+          //      binding.ivExerciseImage.setImageURI(it)
+                imageUri = it
+                Glide.with(this).load(it).into(binding.ivExerciseImage)
+>>>>>>> Stashed changes
             }
         }
 
@@ -105,10 +113,13 @@ class AddUpdateExerciseFragment : Fragment() {
         arrayAdapter = ArrayAdapter(mainActivity,android.R.layout.simple_list_item_1,weightGainArray)
         binding.weightGainSpinner.adapter = arrayAdapter
 
+<<<<<<< Updated upstream
      //   imageAdapter = ImageAdapter(imageList)
 //        binding.ivExerciseImageList.layoutManager = LinearLayoutManager(mainActivity,LinearLayoutManager.HORIZONTAL,false)
 //        binding.ivExerciseImageList.adapter = imageAdapter
 
+=======
+>>>>>>> Stashed changes
         binding.spinner.onItemSelectedListener = object :OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -155,7 +166,11 @@ class AddUpdateExerciseFragment : Fragment() {
                 Glide.with(mainActivity)
                     .load(exerciseModel.image).placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
+<<<<<<< Updated upstream
                     .into(binding.ivExerciseImageList)
+=======
+                    .into(binding.ivExerciseImage)
+>>>>>>> Stashed changes
                 isUpdate = true
             }
         }
@@ -177,11 +192,11 @@ class AddUpdateExerciseFragment : Fragment() {
             }
         }
         binding.btnSave.setOnClickListener {
-            if(binding.etExerciseName.text.toString().isEmpty()){
+            if (binding.etExerciseName.text.toString().isEmpty()) {
                 binding.etExerciseName.error = "Enter Exercise name"
-            }else if(binding.etExerciseDescription.text.toString().isEmpty()){
+            } else if (binding.etExerciseDescription.text.toString().isEmpty()) {
                 binding.etExerciseName.error = "Enter Description name"
-            }else{
+            } else {
                 binding.progress.visibility = View.VISIBLE
                 var exerciseModel = ExerciseModel()
                 exerciseModel.exerciseName = binding.etExerciseName.text.toString()
@@ -193,6 +208,7 @@ class AddUpdateExerciseFragment : Fragment() {
                 exerciseModel.WeigthGainOrLoss = weightGORL
 
 
+<<<<<<< Updated upstream
                 if(this::imageUri.isInitialized) {
                             println("ImageList")
                             var ImagesPath =
@@ -247,21 +263,77 @@ class AddUpdateExerciseFragment : Fragment() {
                                             }
                                         } else {
                                             val ERROR: String? = task.getException()?.message
+=======
+                var ImagesPath =
+                    storageRef.child("/images")
+                        .child(System.currentTimeMillis().toString())
+                imageUri?.let { it1 ->
+                    ImagesPath.putFile(it1).continueWithTask { task ->
+                        if (!task.isSuccessful) {
+                            println("Error Image: ${task.exception}")
+                            task.exception?.let {
+                                throw it
+                            }
+                        }
+                        ImagesPath.downloadUrl
+                    }.addOnCompleteListener {
+                        if (it.isSuccessful()) {
+                            val downUri: Uri? = it.getResult()
+                            Log.e(ContentValues.TAG, "download uri $downUri")
+                            exerciseModel.image = downUri.toString()
+                            if (isUpdate) {
+                                println("IsUpdate: $isUpdate")
+                                db.collection("exercise").document(exerciseId)
+                                    .set(exerciseModel)
+                                    .addOnCompleteListener {
+                                        if (it.isSuccessful) {
+                                            binding.progress.visibility = View.GONE
+>>>>>>> Stashed changes
                                             Toast.makeText(
-                                                requireContext(),
-                                                ERROR,
+                                                mainActivity,
+                                                "Update Data",
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                            mainActivity.navController.popBackStack()
                                         }
                                     }
-                                })
+                            } else {
+                                println("IsUpdate: $isUpdate")
+                                db.collection("exercise").add(exerciseModel)
+                                    .addOnCompleteListener {
+                                        if (it.isSuccessful) {
+                                            binding.progress.visibility = View.GONE
+                                            Toast.makeText(
+                                                mainActivity,
+                                                "Data Save",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            mainActivity.navController.popBackStack()
+                                        }
+                                    }
+                            }
+                        } else {
+                            val ERROR: String? = it.getException()?.message
+                            Toast.makeText(
+                                requireContext(),
+                                ERROR,
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
+<<<<<<< Updated upstream
                 else{
                         Toast.makeText(mainActivity,"Select Image",Toast.LENGTH_SHORT).show()
                     }
                 }
             }
+=======
+
+                    }
+                }
+            }
+        }
+>>>>>>> Stashed changes
 
         return binding.root
     }

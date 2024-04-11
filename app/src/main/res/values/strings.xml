@@ -6,8 +6,8 @@
     <string name="enter_email">Enter Your Email</string>
     <string name="enter_password">Enter Your Password</string>
     <string name="chest_exercise">Chest Exercise</string>
-    <string name="tricep_exercise">Tricep Exercise</string>
-    <string name="bicep_exercise">Biceps Exercise</string>
+    <string name="fullbody_exercise">Full Body Exercise</string>
+    <string name="arm_exercise">Arms Exercise</string>
     <string name="leg_exercise">Leg Exercise</string>
     <string name="add_exercise">Add Exercise</string>
     <string name="exercise_name">Exercise Name</string>
@@ -20,4 +20,5 @@
     <string name="bignnner">Beginners</string>
     <string name="choose_level">Choose Your Level</string>
     <string name="select_image">Select Image</string>
+
 </resources>

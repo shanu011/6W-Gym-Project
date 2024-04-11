@@ -11,14 +11,19 @@ import com.example.adminapp.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
     var auth = Firebase.auth
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+/.+[a-z]+"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnLogin.setOnClickListener {
+
             if(binding.etEmail.text.toString().isEmpty()){
                 binding.etEmail.error = "Enter Your Email"
-            }else if(binding.etPassword.text.toString().isEmpty()){
+            }else if(binding.etEmail.text.matches(emailPattern.toRegex())){
+                binding.etEmail.error = "Enter Your Valid Email"
+            }
+            else if(binding.etPassword.text.toString().isEmpty()){
                 binding.etPassword.error = "Enter Your Password"
             }else{
                 auth.signInWithEmailAndPassword(binding.etEmail.text.toString(),binding.etPassword.text.toString()).addOnCompleteListener {

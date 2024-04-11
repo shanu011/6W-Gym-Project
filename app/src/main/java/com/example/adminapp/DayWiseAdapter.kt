@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adminapp.databinding.DayWiseItemBinding
 
-class DayWiseAdapter(var dayList : ArrayList<DayModel>,var dayClickInterface: DayClickInterface): RecyclerView.Adapter<DayWiseAdapter.ViewHolder>() {
+class DayWiseAdapter(var dayList : List<DayModel>,var dayClickInterface: DayClickInterface): RecyclerView.Adapter<DayWiseAdapter.ViewHolder>() {
     inner class ViewHolder(var binding: DayWiseItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bindData(dayModel: DayModel) {
             binding.tvDay.setText(dayModel.day)
@@ -30,7 +30,14 @@ class DayWiseAdapter(var dayList : ArrayList<DayModel>,var dayClickInterface: Da
         holder.itemView.setOnLongClickListener {
             dayClickInterface.onDelete(dayList[position])
             return@setOnLongClickListener true
+<<<<<<< Updated upstream
         }
+=======
+
+        }
+
+
+>>>>>>> Stashed changes
     }
 
 }

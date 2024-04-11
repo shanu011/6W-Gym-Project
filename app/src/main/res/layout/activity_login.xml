@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/login_background"
+    android:gravity="center"
     android:orientation="vertical">
-
 
     <!--    </androidx.cardview.widget.CardView>-->
 
@@ -14,6 +15,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -21,63 +23,52 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sp"
-                android:gravity="center"
-                android:text="@string/login"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_35sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:src="@drawable/baseline_account_circle_24" />
 
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10sp"
-                android:background="@drawable/background_editext"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/round_corner"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="@dimen/_10sp"
                 android:hint="@string/enter_email"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/_13sp"
-                android:paddingStart="@dimen/_10sp" />
+                android:textColorHint="@color/white"
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10sp"
-                android:background="@drawable/background_editext"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/round_corner"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="@dimen/_10sp"
                 android:hint="@string/enter_password"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:padding="@dimen/_13sp" />
+                android:padding="@dimen/_13sp"
+                android:textColorHint="@color/white"
+                android:textSize="20dp" />
 
-            <com.google.android.material.card.MaterialCardView
+
+            <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sp"
-                android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/_5sdp">
-
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/_10sp"
-                    android:text="@string/login"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sp" />
-            </com.google.android.material.card.MaterialCardView>
+                android:layout_marginTop="@dimen/margin_15dp"
+                android:backgroundTint="@color/white"
+                android:padding="@dimen/_10sp"
+                android:text="Login"
+                android:textColor="#185DC3"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>

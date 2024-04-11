@@ -25,7 +25,11 @@
         android:textSize="@dimen/_30sp"/>
 
     <ImageView
+<<<<<<< Updated upstream
         android:id="@+id/ivExerciseImageList"
+=======
+        android:id="@+id/ivExerciseImage"
+>>>>>>> Stashed changes
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="center"

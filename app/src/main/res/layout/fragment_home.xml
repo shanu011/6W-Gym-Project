@@ -26,7 +26,7 @@
             android:layout_margin="@dimen/_20sp"
             android:textAlignment="center"
             android:textSize="@dimen/_30sp"
-            android:text="@string/chest_exercise"/>
+            android:text="@string/fullbody_exercise"/>
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -47,7 +47,7 @@
             android:layout_margin="@dimen/_20sp"
             android:textAlignment="center"
             android:textSize="@dimen/_30sp"
-            android:text="@string/tricep_exercise"/>
+            android:text="@string/arm_exercise"/>
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -68,7 +68,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sp"
-            android:text="@string/bicep_exercise"/>
+            android:text="@string/leg_exercise"/>
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -89,7 +89,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sp"
-            android:text="@string/leg_exercise"/>
+            android:text="@string/chest_exercise"/>
 
     </androidx.cardview.widget.CardView>
 
