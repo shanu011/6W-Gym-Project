@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
-        android:src="@drawable/gym"/>
+        android:src="@drawable/pose2"/>
 
     <TextView
         android:id="@+id/tvDay"

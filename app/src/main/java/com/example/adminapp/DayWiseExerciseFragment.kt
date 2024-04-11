@@ -20,7 +20,6 @@ import com.example.adminapp.databinding.FragmentDayWiseExerciseBinding
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [DayWiseExerciseFragment.newInstance] factory method to
@@ -36,8 +35,6 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
     var sortDayWise = arrayListOf<DayModel>()
     private var difficultyLevel: Int = 1
     private var exerciseType: Int = 1
-    var i = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivity = activity as MainActivity
@@ -45,14 +42,11 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
             difficultyLevel = arguments?.getInt("difficultyLevel", 1) ?: 1
             println("Check the Level: $difficultyLevel")
         }
-        // dayList.clear()
-
         db.collection("day").whereEqualTo("difficultyLevel", difficultyLevel)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     return@addSnapshotListener
                 }
-                dayList.clear()
                 for(snapshot in value!!.documentChanges){
                     when(snapshot.type){
                         DocumentChange.Type.ADDED->{
@@ -137,7 +131,6 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
                 }
             }
     }
-
     override fun onDayClick(dayModel: DayModel) {
         var bundle = Bundle()
         bundle.putString("dayModel", dayModel.id)
@@ -166,15 +159,12 @@ class DayWiseExerciseFragment : Fragment(), DayClickInterface {
                            if (it.isSuccessful) {
                                Toast.makeText(mainActivity, "Update", Toast.LENGTH_SHORT).show()
                                dialog.dismiss()
-                        }
-                    }
+                           }
+                          }
             }
 
         }
-        dialog.show()
-
-
-    }
+         }
 
     override fun onDelete(dayModel: DayModel) {
         db.collection("day").document(dayModel.id.toString()).delete().addOnCompleteListener {
